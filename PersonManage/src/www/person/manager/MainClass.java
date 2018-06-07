@@ -6,10 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 public class MainClass {
-	public static ArrayList<Person> list;
-	
 	public static void main(String[] args) {
-		list = new ArrayList<Person>();
 		
 		SwingUtilities.invokeLater(new Runnable(){
 

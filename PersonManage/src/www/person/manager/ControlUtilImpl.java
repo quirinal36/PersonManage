@@ -2,11 +2,18 @@ package www.person.manager;
 
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 public class ControlUtilImpl implements ControllUtil {
 
 	@Override
-	public int addItem(Person person) {
-		return 0;
+	public Person addItem(JFrame parentComponent) {
+		Person person = new Person();
+		
+		person.setName(JOptionPane.showInputDialog(parentComponent, "이름"));
+		
+		return person;
 	}
 
 	@Override

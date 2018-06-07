@@ -2,10 +2,12 @@ package www.person.manager;
 
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
+
 public interface ControllUtil {
 
 	// 생성
-	public int addItem(Person person);
+	public Person addItem(JFrame frame);
 	// 수정
 	public int updateItem(Person person);
 	// 삭제
