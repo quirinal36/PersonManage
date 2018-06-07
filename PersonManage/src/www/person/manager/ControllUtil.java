@@ -14,6 +14,6 @@ public interface ControllUtil {
 	public int deleteItem(int id);
 	// 전체조회
 	public ArrayList<Person> getAllList();
-	// 검색
+	// 특정 이름 검색
 	public ArrayList<Person> getSearchName(String search);
 }

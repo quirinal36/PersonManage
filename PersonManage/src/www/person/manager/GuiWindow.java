@@ -61,6 +61,8 @@ public class GuiWindow extends JFrame implements ActionListener{
 		if(e.getSource() == buttonAdd) {
 			Person person = util.addItem(this);
 			logger.info(person.toString());
+			list.add(person);
+			
 		}else if(e.getSource() == buttonDel) {
 //			util.deleteItem(id);
 		}else if(e.getSource() == buttonUpd) {

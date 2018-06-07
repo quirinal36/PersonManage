@@ -10,9 +10,7 @@ public class ControlUtilImpl implements ControllUtil {
 	@Override
 	public Person addItem(JFrame parentComponent) {
 		Person person = new Person();
-		
 		person.setName(JOptionPane.showInputDialog(parentComponent, "이름"));
-		
 		return person;
 	}
 
