@@ -12,15 +12,12 @@ public class Person {
 	String address;
 	String postCode;
 	String birth;
-	String img;
-	ArrayList<Person> family;
 	
 	public Person() {
 		super();
 	}
 
-	public Person(int no, String name, String phone, String address, String postCode, String birth, String img,
-			ArrayList<Person> family) {
+	public Person(int no, String name, String phone, String address, String postCode, String birth) {
 		super();
 		this.no = no;
 		this.name = name;
@@ -28,8 +25,6 @@ public class Person {
 		this.address = address;
 		this.postCode = postCode;
 		this.birth = birth;
-		this.img = img;
-		this.family = family;
 	}
 
 	public int getNo() {
@@ -80,22 +75,6 @@ public class Person {
 		this.birth = birth;
 	}
 
-	public String getImg() {
-		return img;
-	}
-
-	public void setImg(String img) {
-		this.img = img;
-	}
-
-	public ArrayList<Person> getFamily() {
-		return family;
-	}
-
-	public void setFamily(ArrayList<Person> family) {
-		this.family = family;
-	}
-	
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);

@@ -9,11 +9,11 @@ public interface ControllUtil {
 	// 생성
 	public Person addItem(JFrame frame);
 	// 수정
-	public int updateItem(Person person);
+	public void updateItem(Person person, ArrayList<Person> list);
 	// 삭제
-	public int deleteItem(int id);
-	// 전체조회
-	public ArrayList<Person> getAllList();
+	public void deleteItem(int id, ArrayList<Person> list);
 	// 특정 이름 검색
-	public ArrayList<Person> getSearchName(String search);
+	public ArrayList<Person> getSearchName(String search, ArrayList<Person> list);
+	// 전체 출력
+	public void showAll(ArrayList<Person> list);
 }
