@@ -81,15 +81,7 @@ public class GuiWindow extends JFrame implements ActionListener{
 				util.showAll(searchResult);
 			}
 		}else if(e.getSource() == buttonShowAll) {
-//			showAll();
 			util.showAll(list);
-		}
-	}
-	public void showAll() {
-		Iterator<Person> iter = list.iterator();
-		while(iter.hasNext()) {
-			Person person = iter.next();
-			logger.info(person.toString());
 		}
 	}
 }
