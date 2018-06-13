@@ -28,6 +28,8 @@ public class SaveInfo extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		
 		String name 	= request.getParameter("name");
 		String birth 	= request.getParameter("birth");
 		String num		= request.getParameter("num");
@@ -39,9 +41,11 @@ public class SaveInfo extends HttpServlet {
 		DButil util = new DButil();
 		int result = util.insertPerson(person);
 		
+		response.setCharacterEncoding("UTF-8");
 		if(result > 0) {
 			response.sendRedirect("./index.jsp");
 		}else {
+			response.setContentType("text/html;charset=utf-8");
 			response.getWriter().append("입력에 실패했습니다.");
 		}
 	}

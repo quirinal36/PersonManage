@@ -10,12 +10,12 @@
 <form method="POST" action="./save">
 	<table>
 		<tr>
-			<th>이름</th>
+			<th>이름</th>
 			<td><input type="text" name="name" size="15"/></td>
 		</tr>
 		<tr>
 			<th>번호</th>
-			<td><input type="text" name="num" size="15"/></td>
+			<td><input type="number" name="num" size="15"/></td>
 		</tr>
 		<tr>
 			<th>생년월일</th>
