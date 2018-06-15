@@ -47,10 +47,16 @@ public class DButil {
 		query.append("	address=?,");
 		query.append("	postCode=?,");
 		query.append("	birth=?");
-		query.append("	WHERE num = ?");
+		query.append("	WHERE NUM = ?");
 		try {
 			conn = db.getConnection();
 			PreparedStatement stmt = conn.prepareStatement(query.toString());
+			stmt.setInt(1, person.getNo());
+			stmt.setString(2, person.getName());
+			stmt.setString(3, person.getAddress());
+			stmt.setString(4, person.getPostCode());
+			stmt.setString(5, person.getBirth());
+			stmt.setInt(6, person.getNo());
 			result = stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -87,17 +93,18 @@ public class DButil {
 		return result;
 	}
 	public Person searchByNum(int no) {
-		Person result = new Person();
+		Person person = new Person();
 		DBconn db = new DBconn();
 		Connection conn = null;
 		
 		try {
 			conn = db.getConnection();
-			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Person WHERE NUM = ?");
+			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM new_schema.Person WHERE Num = ?");
 			stmt.setInt(1, no);
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
-				Person person = new Person();
+				System.out.println("NUM:" + rs.getInt("NUM"));
+				
 				person.setNo(rs.getInt("NUM"));
 				person.setName(rs.getString("name"));
 				person.setBirth(rs.getString("birth"));
@@ -114,7 +121,7 @@ public class DButil {
 				e.printStackTrace();
 			}
 		}
-		return result;
+		return person;
 	}
 	public List<Person> searchByName(String name){
 		List<Person> list = new ArrayList<>();
@@ -158,6 +165,9 @@ public class DButil {
 				person.setNo(rs.getInt("NUM"));
 				person.setName(rs.getString("name"));
 				person.setBirth(rs.getString("birth"));
+				person.setAddress(rs.getString("address"));
+				person.setPostCode(rs.getString("postcode"));
+				person.setPhone(rs.getString("phone"));
 				
 				list.add(person);
 			}

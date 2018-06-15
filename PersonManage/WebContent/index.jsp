@@ -16,26 +16,28 @@ List<Person> list = dbUtil.getPeople();
 function goInsert(){
 	window.location.href = "./insert.jsp";
 }
-function deleteRow(no){
+
+function deleteRow(no, name){
 	var url = "./delete";
 	var param = "num="+no;
-	
-	$.ajax({
-		type	: "POST",
-		url		: url,
-		data	: param,
-		success : function(response, textStatus, jqXHR){
-			var resultJson = JSON.parse(response);
-			console.log(resultJson);
-			
-			if(resultJson.result == '1'){
-				console.log("delete ok");
-				window.location.reload();
-			}else{
-				console.log("delete ok");
+	if(confirm(name + "을 삭제하시겠습니까?")){
+		$.ajax({
+			type	: "POST",
+			url		: url,
+			data	: param,
+			success : function(response, textStatus, jqXHR){
+				var resultJson = JSON.parse(response);
+				console.log(resultJson);
+				
+				if(resultJson.result == '1'){
+					console.log("delete ok");
+					window.location.reload();
+				}else{
+					console.log("delete ok");
+				}
 			}
-		}
-	});
+		});
+	}
 }
 </script>
 </head>
@@ -63,7 +65,7 @@ function deleteRow(no){
 		<th><%=person.getAddress()%></th>
 		<th><%=person.getPostCode()%></th>
 		<th><%=person.getPhone()%></th>
-		<th><input type="button" value="삭제" onclick="javascript:deleteRow(<%=person.getNo() %>)"/></th>
+		<th><input type="button" value="삭제" onclick="javascript:deleteRow(<%=person.getNo() %>,'<%=person.getName() %>')"/></th>
 		<th><input type="button" value="수정" onclick="window.location.href='./update.jsp?num=<%=person.getNo() %>'"/></th>
 	</tr>
 	<%} %>

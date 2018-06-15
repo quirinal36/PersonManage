@@ -47,32 +47,30 @@ function deleteRow(no){
 </script>
 </head>
 <body>
-
-<table border="1">
-	<tr>
-	
-		<th>번호</th>
-		<th>이름</th>
-		<th>생년월일</th>
-		<th>주소</th>
-		<th>우편번호</th>
-		<th>전화번호</th>
+<form method="post" action="./update">
+	<table border="1">
+		<tr>
 		
-	</tr>
-	
-	
-	<tr>
-	
-		<th><input type="number" name="num" value="<%=person.getNo() %>"/></th>
-		<th><input type="text" name="num" value="<%=person.getName() %>"/></th>
-		<th><input type="text" name="num" value="<%=person.getBirth() %>"/></th>
-		<th><input type="text" name="num" value="<%=person.getAddress()%>"/></th>
-		<th><input type="number" name="num" value="<%=person.getPostCode()%>"/></th>
-		<th><input type="text" name="num" value="<%=person.getPhone()%>"/></th>
-	</tr>
-	
-</table>
+			<th>번호</th>
+			<th>이름</th>
+			<th>생년월일</th>
+			<th>주소</th>
+			<th>우편번호</th>
+			<th>전화번호</th>
+			
+		</tr>
+		<tr>
+			<th><input type="number" name="num" value="<%=person.getNo() %>"/></th>
+			<th><input type="text" name="name" value="<%=person.getName() %>"/></th>
+			<th><input type="text" name="birth" value="<%=person.getBirth() %>"/></th>
+			<th><input type="text" name="address" value="<%=person.getAddress()%>"/></th>
+			<th><input type="number" name="postcode" value="<%=person.getPostCode()%>"/></th>
+			<th><input type="text" name="phone" value="<%=person.getPhone()%>"/></th>
+		</tr>
+		
+	</table>
+	<input type="submit" value="수정완료"/>
+</form>
 
-<input type="button" value="새로입력" onclick="javascript:goInsert();"/>
 </body>
 </html>
