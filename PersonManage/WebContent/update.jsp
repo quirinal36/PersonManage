@@ -50,21 +50,18 @@ function deleteRow(no){
 		<th>주소</th>
 		<th>우편번호</th>
 		<th>전화번호</th>
-		<th></th>
-		<th></th>
+		
 	</tr>
 	<%for(int i=0; i<list.size(); i++){
 		Person person = list.get(i);%>
 	<tr>
 		<th><%=i%></th>
-		<th><%=person.getNo() %></th>
-		<th><%=person.getName() %></th>
-		<th><%=person.getBirth() %></th>
-		<th><%=person.getAddress()%></th>
-		<th><%=person.getPostCode()%></th>
-		<th><%=person.getPhone()%></th>
-		<th><input type="button" value="삭제" onclick="javascript:deleteRow(<%=person.getNo() %>)"/></th>
-		<th><input type="button" value="수정" onclick="window.location.href='./update.jsp?num=<%=person.getNo() %>'"/></th>
+		<th><input type="number" name="num" value="<%=person.getNo() %>"/></th>
+		<th><input type="text" name="num" value="<%=person.getName() %>"/></th>
+		<th><input type="text" name="num" value="<%=person.getBirth() %>"/></th>
+		<th><input type="text" name="num" value="<%=person.getAddress()%>"/></th>
+		<th><input type="number" name="num" value="<%=person.getPostCode()%>"/></th>
+		<th><input type="text" name="num" value="<%=person.getPhone()%>"/></th>
 	</tr>
 	<%} %>
 </table>

@@ -35,6 +35,85 @@ public class DButil {
 		}
 		return result;
 	}
+	public int updatePerson(Person person) {
+		int result = 0;
+		DBconn db = new DBconn();
+		Connection conn = null;
+		StringBuilder query = new StringBuilder();
+		query.append("UPDATE Person");
+		query.append(" 	SET"); 
+		query.append("	Num=?,");
+		query.append("	name=?,");
+		query.append("	address=?,");
+		query.append("	postCode=?,");
+		query.append("	birth=?");
+		query.append("	WHERE num = ?");
+		try {
+			conn = db.getConnection();
+			PreparedStatement stmt = conn.prepareStatement(query.toString());
+			result = stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	public int deleteByNum(int num) {
+		int result = 0;
+		
+		DBconn db = new DBconn();
+		Connection conn = null;
+		
+		try {
+			conn = db.getConnection();
+			PreparedStatement stmt = conn.prepareStatement("DELETE FROM Person WHERE num = ?");
+			stmt.setInt(1, num);
+			result = stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
+	}
+	public List<Person> searchByName(String name){
+		List<Person> list = new ArrayList<>();
+		DBconn db = new DBconn();
+		Connection conn = null;
+		try {
+			conn = db.getConnection();
+			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Person WHERE name = ?");
+			stmt.setString(1, name);
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				Person person = new Person();
+				person.setNo(rs.getInt("NUM"));
+				person.setName(rs.getString("name"));
+				person.setBirth(rs.getString("birth"));
+				
+				list.add(person);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
 	public List<Person> getPeople(){
 		List<Person> list = new ArrayList<>();
 		DBconn db = new DBconn();
