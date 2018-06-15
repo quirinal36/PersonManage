@@ -46,7 +46,8 @@ public class DButil {
 		query.append("	name=?,");
 		query.append("	address=?,");
 		query.append("	postCode=?,");
-		query.append("	birth=?");
+		query.append("	birth=?,");
+		query.append("	phone=?");
 		query.append("	WHERE NUM = ?");
 		try {
 			conn = db.getConnection();
@@ -56,7 +57,8 @@ public class DButil {
 			stmt.setString(3, person.getAddress());
 			stmt.setString(4, person.getPostCode());
 			stmt.setString(5, person.getBirth());
-			stmt.setInt(6, person.getNo());
+			stmt.setString(6, person.getPhone());
+			stmt.setInt(7, person.getNo());
 			result = stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
