@@ -16,7 +16,7 @@ public class DButil {
 		DBconn db = new DBconn();
 		Connection conn = null;
 		try {
-			String query = "INSERT INTO Person (name, birth, Num) VALUES (?,?,?)";
+			String query = "INSERT INTO Person (name, birth, NUM) VALUES (?,?,?)";
 			
 			conn = db.getConnection();
 			PreparedStatement stmt = conn.prepareStatement(query);
@@ -42,7 +42,7 @@ public class DButil {
 		StringBuilder query = new StringBuilder();
 		query.append("UPDATE Person");
 		query.append(" 	SET"); 
-		query.append("	Num=?,");
+		query.append("	NUM=?,");
 		query.append("	name=?,");
 		query.append("	address=?,");
 		query.append("	postCode=?,");
@@ -71,7 +71,7 @@ public class DButil {
 		
 		try {
 			conn = db.getConnection();
-			PreparedStatement stmt = conn.prepareStatement("DELETE FROM Person WHERE num = ?");
+			PreparedStatement stmt = conn.prepareStatement("DELETE FROM Person WHERE NUM = ?");
 			stmt.setInt(1, num);
 			result = stmt.executeUpdate();
 		} catch (SQLException e) {
@@ -84,6 +84,36 @@ public class DButil {
 			}
 		}
 		
+		return result;
+	}
+	public Person searchByNum(int no) {
+		Person result = new Person();
+		DBconn db = new DBconn();
+		Connection conn = null;
+		
+		try {
+			conn = db.getConnection();
+			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Person WHERE NUM = ?");
+			stmt.setInt(1, no);
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				Person person = new Person();
+				person.setNo(rs.getInt("NUM"));
+				person.setName(rs.getString("name"));
+				person.setBirth(rs.getString("birth"));
+				person.setAddress(rs.getString("address"));
+				person.setPostCode(rs.getString("postcode"));
+				person.setPhone(rs.getString("phone"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		return result;
 	}
 	public List<Person> searchByName(String name){

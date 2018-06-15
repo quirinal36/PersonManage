@@ -1,10 +1,17 @@
+<%@page import="java.util.logging.Logger"%>
 <%@page import="java.util.List"%>
 <%@page import="www.person.manager.Person"%>
 <%@page import="www.person.manager.db.DButil"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 DButil dbUtil = new DButil();
-List<Person> list = dbUtil.getPeople();
+// List<Person> list = dbUtil.getPeople();
+Logger logger = Logger.getLogger("update.jsp");
+
+int num = Integer.parseInt(request.getParameter("num"));
+Person person = dbUtil.searchByNum(num);
+logger.info(person.toString());
+
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -43,7 +50,7 @@ function deleteRow(no){
 
 <table border="1">
 	<tr>
-		<th>no</th>
+	
 		<th>번호</th>
 		<th>이름</th>
 		<th>생년월일</th>
@@ -52,10 +59,10 @@ function deleteRow(no){
 		<th>전화번호</th>
 		
 	</tr>
-	<%for(int i=0; i<list.size(); i++){
-		Person person = list.get(i);%>
+	
+	
 	<tr>
-		<th><%=i%></th>
+	
 		<th><input type="number" name="num" value="<%=person.getNo() %>"/></th>
 		<th><input type="text" name="num" value="<%=person.getName() %>"/></th>
 		<th><input type="text" name="num" value="<%=person.getBirth() %>"/></th>
@@ -63,7 +70,7 @@ function deleteRow(no){
 		<th><input type="number" name="num" value="<%=person.getPostCode()%>"/></th>
 		<th><input type="text" name="num" value="<%=person.getPhone()%>"/></th>
 	</tr>
-	<%} %>
+	
 </table>
 
 <input type="button" value="새로입력" onclick="javascript:goInsert();"/>
